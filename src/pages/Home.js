@@ -25,8 +25,10 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchDashboardData();
-  }, [user]);
+    if (user?.email) {
+      fetchDashboardData();
+    }
+  }, [user?.email]);
 
   const fetchDashboardData = async () => {
     try {

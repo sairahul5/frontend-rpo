@@ -48,10 +48,12 @@ const Login = () => {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Username</label>
+              <label htmlFor="username">Username</label>
               <input
+                id="username"
                 type="text"
                 name="username"
+                autoComplete="username"
                 value={formData.username}
                 onChange={handleChange}
                 required
@@ -59,10 +61,12 @@ const Login = () => {
               />
             </div>
             <div className="form-group">
-              <label>Password</label>
+              <label htmlFor="password">Password</label>
               <input
+                id="password"
                 type="password"
                 name="password"
+                autoComplete="current-password"
                 value={formData.password}
                 onChange={handleChange}
                 required
