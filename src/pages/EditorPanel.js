@@ -45,7 +45,7 @@ const EditorPanel = () => {
                 <p><strong>Uploaded by:</strong> {paper.uploadedBy.name}</p>
                 <p><strong>Uploaded on:</strong> {new Date(paper.createdAt).toLocaleDateString()}</p>
                 <a 
-                  href={`http://localhost:8080${paper.filePath}`} 
+                  href={`https://backend-repo-lzwq.onrender.com${paper.filePath}`} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn btn-secondary"

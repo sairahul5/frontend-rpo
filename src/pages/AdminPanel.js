@@ -492,7 +492,7 @@ const AdminPanel = () => {
                       <p><strong>Date:</strong> {new Date(paper.createdAt).toLocaleDateString()}</p>
                       <div className="card-actions">
                         <a 
-                          href={`http://localhost:8080${paper.filePath}`} 
+                          href={`https://backend-repo-lzwq.onrender.com${paper.filePath}`} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="btn btn-sm btn-secondary"
@@ -534,7 +534,7 @@ const AdminPanel = () => {
                       <p><strong>Date:</strong> {new Date(paper.createdAt).toLocaleDateString()}</p>
                       <div className="card-actions">
                         <a 
-                          href={`http://localhost:8080${paper.filePath}`} 
+                          href={`https://backend-repo-lzwq.onrender.com${paper.filePath}`} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="btn btn-sm btn-secondary"
@@ -579,7 +579,7 @@ const AdminPanel = () => {
                       <p><strong>Date:</strong> {new Date(paper.createdAt).toLocaleDateString()}</p>
                       <div className="card-actions">
                         <a 
-                          href={`http://localhost:8080${paper.filePath}`} 
+                          href={`https://backend-repo-lzwq.onrender.com${paper.filePath}`} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="btn btn-sm btn-secondary"
@@ -616,7 +616,7 @@ const AdminPanel = () => {
               {projects.map((project) => (
                 <div key={project.id} className="card">
                   {project.imagePath && (
-                    <img src={`http://localhost:8080${project.imagePath}`} alt={project.title} className="project-img" />
+                    <img src={`https://backend-repo-lzwq.onrender.com${project.imagePath}`} alt={project.title} className="project-img" />
                   )}
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
@@ -655,7 +655,7 @@ const AdminPanel = () => {
               {solutions.map((solution) => (
                 <div key={solution.id} className="card">
                   {solution.thumbnailPath && (
-                    <img src={`http://localhost:8080${solution.thumbnailPath}`} alt={solution.title} className="solution-img" />
+                    <img src={`https://backend-repo-lzwq.onrender.com${solution.thumbnailPath}`} alt={solution.title} className="solution-img" />
                   )}
                   <h3>{solution.title}</h3>
                   <p><strong>Question:</strong> {solution.question}</p>

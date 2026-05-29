@@ -309,7 +309,7 @@ const Portfolio = () => {
         {currentProjects.map((project) => (
           <div key={project.id} className="card project-card">
             {project.imagePath && (
-              <img src={`http://localhost:8080${project.imagePath}`} alt={project.title} />
+              <img src={`https://backend-repo-lzwq.onrender.com${project.imagePath}`} alt={project.title} />
             )}
             <h3>{project.title}</h3>
             <p className="project-description">{project.description}</p>

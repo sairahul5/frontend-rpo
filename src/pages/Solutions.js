@@ -164,7 +164,7 @@ const Solutions = () => {
         {solutions.map((solution) => (
           <div key={solution.id} className="card solution-card">
             {solution.thumbnailPath && (
-              <img src={`http://localhost:8080${solution.thumbnailPath}`} alt={solution.title} />
+              <img src={`https://backend-repo-lzwq.onrender.com${solution.thumbnailPath}`} alt={solution.title} />
             )}
             <h3>{solution.title}</h3>
             <p className="solution-question"><strong>Question:</strong> {solution.question}</p>

@@ -397,14 +397,14 @@ const QuestionPapers = () => {
                       👁️ Preview
                     </button>
                     <a 
-                      href={`http://localhost:8080${paper.filePath}`} 
+                      href={`https://backend-repo-lzwq.onrender.com${paper.filePath}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="btn btn-primary btn-sm"
                       onClick={(e) => {
                         e.preventDefault();
                         const link = document.createElement('a');
-                        link.href = `http://localhost:8080${paper.filePath}`;
+                        link.href = `https://backend-repo-lzwq.onrender.com${paper.filePath}`;
                         link.download = `${paper.examName}_${paper.paperNumber}_${paper.batchYear}.pdf`;
                         link.target = '_blank';
                         document.body.appendChild(link);
@@ -476,14 +476,14 @@ const QuestionPapers = () => {
             <div className="modal-body">
               {previewPaper.filePath?.toLowerCase().endsWith('.pdf') ? (
                 <iframe
-                  src={`http://localhost:8080${previewPaper.filePath}#toolbar=1`}
+                  src={`https://backend-repo-lzwq.onrender.com${previewPaper.filePath}#toolbar=1`}
                   title="Preview"
                   className="preview-iframe"
                   type="application/pdf"
                 />
               ) : (
                 <img 
-                  src={`http://localhost:8080${previewPaper.filePath}`} 
+                  src={`https://backend-repo-lzwq.onrender.com${previewPaper.filePath}`} 
                   alt={previewPaper.examName}
                   className="preview-image"
                   onError={(e) => {
@@ -495,7 +495,7 @@ const QuestionPapers = () => {
             </div>
             <div className="modal-footer">
               <a 
-                href={`http://localhost:8080${previewPaper.filePath}`} 
+                href={`https://backend-repo-lzwq.onrender.com${previewPaper.filePath}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -506,7 +506,7 @@ const QuestionPapers = () => {
                 className="btn btn-success"
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = `http://localhost:8080${previewPaper.filePath}`;
+                  link.href = `https://backend-repo-lzwq.onrender.com${previewPaper.filePath}`;
                   link.download = `${previewPaper.examName}_${previewPaper.paperNumber}_${previewPaper.batchYear}.pdf`;
                   link.target = '_blank';
                   document.body.appendChild(link);

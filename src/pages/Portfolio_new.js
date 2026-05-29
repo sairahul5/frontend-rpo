@@ -352,7 +352,7 @@ const Portfolio = () => {
             <div key={project.id} className="project-card card">
               {project.imagePath && (
                 <div className="project-image">
-                  <img src={`http://localhost:8080${project.imagePath}`} alt={project.title} />
+                  <img src={`https://backend-repo-lzwq.onrender.com${project.imagePath}`} alt={project.title} />
                 </div>
               )}
               
