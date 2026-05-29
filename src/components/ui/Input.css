@@ -1,0 +1,70 @@
+/* Input Component Styles */
+
+.form-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+}
+
+.form-input-with-left-icon {
+  padding-left: var(--spacing-10);
+}
+
+.form-input-with-right-icon {
+  padding-right: var(--spacing-10);
+}
+
+.form-input-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-hint);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-input-icon-left {
+  left: var(--spacing-4);
+}
+
+.form-input-icon-right {
+  right: var(--spacing-4);
+}
+
+.form-input-error {
+  border-color: var(--color-error-500);
+}
+
+.form-input-error:focus {
+  border-color: var(--color-error-500);
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.form-input-success {
+  border-color: var(--color-success-500);
+}
+
+.form-input-success:focus {
+  border-color: var(--color-success-500);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-helper-text {
+  margin-top: var(--spacing-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.form-helper-text-error {
+  color: var(--color-error-600);
+}
+
+.form-helper-text-success {
+  color: var(--color-success-600);
+}
+
+.form-input-full-width {
+  width: 100%;
+}
