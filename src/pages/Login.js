@@ -11,11 +11,23 @@ const Login = () => {
     username: '',
     password: ''
   });
+  const [mfaData, setMfaData] = useState({
+    code: ''
+  });
   const [error, setError] = useState('');
+  const [isMfaRequired, setIsMfaRequired] = useState(false);
+  const [tempToken, setTempToken] = useState('');
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleMfaChange = (e) => {
+    setMfaData({
+      ...mfaData,
       [e.target.name]: e.target.value
     });
   };
@@ -28,9 +40,14 @@ const Login = () => {
       const response = await authAPI.login(formData);
       console.log('Login response:', response);
       if (response.data.success) {
-        const { token, name, email, role } = response.data.data;
-        login({ name, email, role }, token);
-        navigate('/');
+        if (response.data.data.mfaRequired) {
+          setIsMfaRequired(true);
+          setTempToken(response.data.data.tempToken);
+        } else {
+          const { token, name, email, role, mfaEnabled } = response.data.data;
+          login({ name, email, role, mfaEnabled }, token);
+          navigate('/');
+        }
       } else {
         setError(response.data.message || 'Login failed');
       }
@@ -42,11 +59,30 @@ const Login = () => {
     }
   };
 
+  const handleMfaSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const response = await authAPI.verifyMfa({ tempToken, code: mfaData.code });
+      if (response.data.success) {
+        const { token, name, email, role, mfaEnabled } = response.data.data;
+        login({ name, email, role, mfaEnabled }, token);
+        navigate('/');
+      } else {
+        setError(response.data.message || 'MFA verification failed');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'MFA verification failed');
+    }
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Login {isMfaRequired && "- MFA Verification"}</h2>
+        
+        {!isMfaRequired ? (
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input
@@ -74,12 +110,33 @@ const Login = () => {
             </div>
             {error && <p className="error">{error}</p>}
             <button type="submit" className="btn btn-primary btn-block">Login</button>
+            <p className="auth-link" style={{ marginTop: '15px' }}>
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </p>
           </form>
+        ) : (
+          <form onSubmit={handleMfaSubmit}>
+            <div className="form-group">
+              <label htmlFor="code">MFA Code</label>
+              <input
+                id="code"
+                type="text"
+                name="code"
+                value={mfaData.code}
+                onChange={handleMfaChange}
+                required
+                placeholder="Enter 6-digit code"
+                maxLength="6"
+              />
+            </div>
+            {error && <p className="error">{error}</p>}
+            <button type="submit" className="btn btn-primary btn-block">Verify</button>
+            <button type="button" className="btn btn-secondary btn-block" style={{ marginTop: '10px' }} onClick={() => setIsMfaRequired(false)}>Back to Login</button>
+          </form>
+        )}
+        
         <p className="auth-link">
           Don't have an account? <Link to="/register">Register here</Link>
-        </p>
-        <p className="auth-link">
-          <Link to="/forgot-password">Forgot Password?</Link>
         </p>
       </div>
     </div>

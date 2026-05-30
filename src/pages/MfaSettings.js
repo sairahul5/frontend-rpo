@@ -18,7 +18,7 @@ const MfaSettings = () => {
     try {
       const response = await authAPI.setupMfa();
       if (response.data.success) {
-        setQrCode(response.data.data.qrCodeUrl);
+        setQrCode(response.data.data.qrCodeImage);
         setSecret(response.data.data.secret);
         setShowSetup(true);
       }
@@ -139,7 +139,7 @@ const MfaSettings = () => {
               
               {qrCode && (
                 <div className="qr-code-container">
-                  <img src={qrCode} alt="MFA QR Code" className="qr-code" />
+                  <img src={`data:image/png;base64,${qrCode}`} alt="MFA QR Code" className="qr-code" />
                 </div>
               )}
               

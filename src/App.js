@@ -11,6 +11,7 @@ import Portfolio from './pages/Portfolio';
 import Solutions from './pages/Solutions';
 import AdminPanel from './pages/AdminPanel';
 import EditorPanel from './pages/EditorPanel';
+import MfaSettings from './pages/MfaSettings';
 
 const PrivateRoute = ({ children, requireAdmin, requireEditor }) => {
   const { user, isAdmin, isEditor, loading } = useAuth();
@@ -57,11 +58,12 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/question-papers" element={<QuestionPapers />} />
           <Route 
-            path="/question-papers" 
+            path="/mfa-setup" 
             element={
               <PrivateRoute>
-                <QuestionPapers />
+                <MfaSettings />
               </PrivateRoute>
             } 
           />
