@@ -191,7 +191,7 @@ const QuestionPapers = () => {
         </div>
       )}
 
-      {(isAdmin() || isEditor()) && (
+      {user && (
         <div className="action-buttons">
           <button
             className={`btn btn-primary ${showUploadForm ? 'active' : ''}`}
