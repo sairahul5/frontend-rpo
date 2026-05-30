@@ -240,6 +240,19 @@ const AdminPanel = () => {
     }
   };
 
+  const handleResendPasswordResetCode = async (requestId) => {
+  if (window.confirm('Resend the reset code to this user?')) {
+    try {
+      await adminAPI.resendPasswordResetCode(requestId);
+      fetchPasswordResetRequests();
+      alert('Code resent successfully to the user\'s email.');
+    } catch (error) {
+      console.error('Error resending code:', error);
+      alert('Failed to resend code: ' + (error.response?.data?.message || error.message));
+    }
+  }
+};
+
   return (
     <div className="admin-panel container">
       <h1>Admin Panel</h1>
@@ -810,27 +823,35 @@ const AdminPanel = () => {
                           )}
                         </td>
                         <td>
-                          {request.status === 'PENDING' && !request.code && (
-                            <button 
-                              className="btn btn-sm btn-success" 
-                              onClick={() => handleAcceptPasswordReset(request.id)}
-                            >
-                              ✓ Accept Request
-                            </button>
-                          )}
-                          {request.status === 'PENDING' && request.code && (
-                            <span className="text-info">
-                              <span className="status-icon">✉️</span>
-                              Code sent
-                            </span>
-                          )}
-                          {request.status === 'COMPLETED' && (
-                            <span className="text-success">
-                              <span className="status-icon">✓</span>
-                              Completed
-                            </span>
-                          )}
-                        </td>
+  {request.status === 'PENDING' && !request.code && (
+    <button 
+      className="btn btn-sm btn-success" 
+      onClick={() => handleAcceptPasswordReset(request.id)}
+    >
+      ✓ Accept Request
+    </button>
+  )}
+  {request.status === 'PENDING' && request.code && (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <span className="text-info">
+        <span className="status-icon">✉️</span>
+        Code sent
+      </span>
+      <button 
+        className="btn btn-sm btn-warning" 
+        onClick={() => handleResendPasswordResetCode(request.id)}
+      >
+        🔄 Resend Code
+      </button>
+    </div>
+  )}
+  {request.status === 'COMPLETED' && (
+    <span className="text-success">
+      <span className="status-icon">✓</span>
+      Completed
+    </span>
+  )}
+</td>
                       </tr>
                     ))
                   ) : (

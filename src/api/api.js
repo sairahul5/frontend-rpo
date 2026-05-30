@@ -93,6 +93,7 @@ export const adminAPI = {
   getAllQuestionPapers: () => api.get('/admin/question-papers'),
   getAllPasswordResetRequests: () => api.get('/admin/password-reset/all'),
   acceptPasswordResetRequest: (requestId) => api.post('/admin/password-reset/accept', { requestId }),
+resendPasswordResetCode: (requestId) => api.post('/admin/password-reset/resend', { requestId }),  // ← ADD THIS
 };
 
 // Password Reset APIs
