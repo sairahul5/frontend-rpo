@@ -41,19 +41,10 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     
-    setFormData((prev) => {
-      const updated = {
-        ...prev,
-        [name]: value
-      };
-      
-      // Auto-generate email when username changes
-      if (name === 'username') {
-        updated.email = value ? `${value}@sairahul.adabala` : '';
-      }
-      
-      return updated;
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
 
     // Real-time validation
     if (name === 'username') {
@@ -127,18 +118,15 @@ const Register = () => {
             />
           </div>
           <div className="form-group">
-            <label>Email (Auto-generated)</label>
+            <label>Email *</label>
             <input
               type="email"
               name="email"
               value={formData.email}
-              readOnly
-              disabled
-              style={{ backgroundColor: '#f0f0f0', color: '#000', cursor: 'not-allowed' }}
+              onChange={handleChange}
+              required
+              placeholder="Your email address"
             />
-            <small style={{ color: '#666', fontSize: '0.85em' }}>
-              Email is automatically generated from your username
-            </small>
           </div>
           <div className="form-group">
             <label>Password *</label>
