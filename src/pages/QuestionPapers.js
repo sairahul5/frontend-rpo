@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import './QuestionPapers.css';
 
 const QuestionPapers = () => {
-  const { user } = useAuth();
+  const { user, isAdmin, isEditor } = useAuth();
   const [questionPapers, setQuestionPapers] = useState([]);
   const [allPapers, setAllPapers] = useState([]);
   const [showUploadForm, setShowUploadForm] = useState(false);
@@ -191,7 +191,7 @@ const QuestionPapers = () => {
         </div>
       )}
 
-      {user && (
+      {(isAdmin() || isEditor()) && (
         <div className="action-buttons">
           <button
             className={`btn btn-primary ${showUploadForm ? 'active' : ''}`}

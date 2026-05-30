@@ -57,7 +57,14 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/question-papers" element={<QuestionPapers />} />
+          <Route 
+            path="/question-papers" 
+            element={
+              <PrivateRoute>
+                <QuestionPapers />
+              </PrivateRoute>
+            } 
+          />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/solutions" element={<Solutions />} />
           <Route

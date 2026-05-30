@@ -38,7 +38,7 @@ export const questionPaperAPI = {
   getAll: () => api.get('/question-papers'),
   getPending: () => api.get('/question-papers/pending'),
   upload: (formData) => api.post('/question-papers/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { 'Content-Type': undefined },
   }),
   verify: (id, status) => api.put(`/question-papers/verify/${id}?status=${status}`),
   filter: (params) => api.get('/question-papers/filter', { params }),
@@ -51,10 +51,10 @@ export const portfolioAPI = {
   getAll: () => api.get('/portfolio'),
   filter: (status) => api.get(`/portfolio/filter?status=${status}`),
   create: (formData) => api.post('/portfolio', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { 'Content-Type': undefined },
   }),
   update: (id, formData) => api.put(`/portfolio/${id}`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { 'Content-Type': undefined },
   }),
   delete: (id) => api.delete(`/portfolio/${id}`),
 };
@@ -64,10 +64,10 @@ export const solutionAPI = {
   getAll: () => api.get('/solutions'),
   filter: (platform) => api.get(`/solutions/filter?platform=${platform}`),
   create: (formData) => api.post('/solutions', formData, {
-  update: (id, formData) => api.put(`/solutions/${id}`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: { 'Content-Type': undefined },
   }),
-    headers: { 'Content-Type': 'multipart/form-data' },
+  update: (id, formData) => api.put(`/solutions/${id}`, formData, {
+    headers: { 'Content-Type': undefined },
   }),
   delete: (id) => api.delete(`/solutions/${id}`),
 };
