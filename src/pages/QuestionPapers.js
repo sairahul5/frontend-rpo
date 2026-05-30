@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import './QuestionPapers.css';
 
 const QuestionPapers = () => {
-  const { user, isAdmin, isEditor } = useAuth();
+  const { user } = useAuth();
   const [questionPapers, setQuestionPapers] = useState([]);
   const [allPapers, setAllPapers] = useState([]);
   const [showUploadForm, setShowUploadForm] = useState(false);
