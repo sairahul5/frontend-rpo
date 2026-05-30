@@ -139,7 +139,7 @@ const MfaSettings = () => {
               
               {qrCode && (
                 <div className="qr-code-container">
-                  <img src={`data:image/png;base64,${qrCode}`} alt="MFA QR Code" className="qr-code" />
+                  <img src={qrCode} alt="MFA QR Code" className="qr-code" />
                 </div>
               )}
               
