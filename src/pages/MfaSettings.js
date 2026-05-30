@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { authAPI } from '../api/api';
+import { useAuth } from '../context/AuthContext';
 import './MfaSettings.css';
 
 const MfaSettings = () => {
-  const [mfaEnabled, setMfaEnabled] = useState(false);
+  const { user, login } = useAuth();
+  const [mfaEnabled, setMfaEnabled] = useState(user?.mfaEnabled || false);
   const [loading, setLoading] = useState(false);
   const [qrCode, setQrCode] = useState(null);
   const [secret, setSecret] = useState(null);
@@ -42,6 +44,9 @@ const MfaSettings = () => {
       if (response.data.success) {
         setMessage({ type: 'success', text: 'MFA enabled successfully!' });
         setMfaEnabled(true);
+        // Update user context to reflect MFA is enabled
+        const token = localStorage.getItem('token');
+        login({ ...user, mfaEnabled: true }, token);
         setShowSetup(false);
         setQrCode(null);
         setSecret(null);
@@ -70,6 +75,9 @@ const MfaSettings = () => {
       if (response.data.success) {
         setMessage({ type: 'success', text: 'MFA disabled successfully!' });
         setMfaEnabled(false);
+        // Update user context to reflect MFA is disabled
+        const token = localStorage.getItem('token');
+        login({ ...user, mfaEnabled: false }, token);
       }
     } catch (error) {
       setMessage({ 
