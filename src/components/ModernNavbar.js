@@ -112,6 +112,10 @@ const ModernNavbar = () => {
                     </div>
                   </div>
                   <div className="dropdown-divider"></div>
+                  <Link to="/mfa-setup" className="dropdown-item" onClick={() => setUserMenuOpen(false)}>
+                    <span className="dropdown-item-icon">🔐</span>
+                    MFA Settings
+                  </Link>
                   <button className="dropdown-item" onClick={handleLogout}>
                     <span className="dropdown-item-icon">🚪</span>
                     Logout
